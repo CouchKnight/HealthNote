@@ -6,7 +6,16 @@ An Android app that reads sleep data from Samsung Health via Health Connect, tra
 medication adherence itself, and publishes an auto-updating, hyperlinked PDF dashboard to a
 Supernote e-ink tablet (Nomad primary, Manta supported).
 
-**Status:** design complete, implementation not started.
+**Status:** domain model and the Supernote PDF renderer are built and tested; the Compose UI
+is written against in-memory fakes but has not been compiled yet. See
+**[docs/IMPLEMENTATION.md](docs/IMPLEMENTATION.md)** for what exists, how it was verified and
+where it departs from the mockups.
+
+```sh
+./gradlew test                          # model, layout and PDF tests (JDK 17+, no Android SDK needed)
+./gradlew :core-render-pdf:renderSample # sample month -> core-render-pdf/build/sample/*.pdf
+./gradlew :app:installDebug             # needs an Android SDK
+```
 
 See **[docs/DESIGN.md](docs/DESIGN.md)** for the full design, including the sourced research
 behind three decisions that are easy to get wrong:
